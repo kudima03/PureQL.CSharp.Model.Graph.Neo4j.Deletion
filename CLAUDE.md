@@ -24,10 +24,14 @@ This is the **deletion package** of the `PureQL.CSharp.Model.Graph` family: it d
 
 - `DeleteByIdStatement` — `sealed record (Guid Id)`; `Value` is the `Neo4j.Driver.Query` `MATCH (n:Node {queryId: $id}) DETACH DELETE n`.
 - `DeleteByIdsStatement` — `sealed record (IReadOnlyCollection<Guid> Ids)`; `Value` is `MATCH (n:Node) WHERE n.queryId IN $ids DETACH DELETE n`.
+- `DeletedQuery` / `DeletedQueries` — `sealed record (IAsyncQueryRunner Runner, Guid Id)` / `(IAsyncQueryRunner Runner, IReadOnlyCollection<Guid> Ids)`; `ApplyAsync(CancellationToken)` runs the statement on the runner and consumes the cursor. The runner may be a session or a transaction, so the Updating package composes `DeletedQuery` with an insertion in one transaction.
+- `DeletedQueryOf` / `DeletedQueriesOf` — the same over `INeo4jStoredQueries Store`: open a session on `Store.Driver` with `WithDatabase(Store.Database)` and run the record above inside `ExecuteWriteAsync`.
+
+Deleting what is not stored is a no-op (an unknown id matches nothing, an empty set deletes nothing), and the statements need no index to be correct (Creation's `pureql_node_query_id` index on `Node(queryId)` only speeds them up). The driver's `RunAsync` takes no cancellation token, so `ApplyAsync` only checks its token before opening the session and before sending the statement.
 
 The Cypher text is a constant built from `GraphLabels` and `GraphProperties`; ids are passed as parameters in the Guid "D" format, as the Graph package writes `queryId`. Inside the package's namespace `Query` resolves to `PureQL.CSharp.Model.Query`, so the driver's type is imported as the alias `Neo4jQuery`. Every public member has XML documentation (`GenerateDocumentationFile`; a missing comment fails the build under `-warnaserror`).
 
-**Test project:** `PureQL.CSharp.Model.Graph.Neo4j.Deletion.Tests` targets `net11.0` and uses xunit with coverlet. The statement tests check the exact Cypher text and parameters.
+**Test project:** `PureQL.CSharp.Model.Graph.Neo4j.Deletion.Tests` targets `net11.0` and uses xunit with coverlet. The statement tests check the exact Cypher text and parameters. The other tests run against a real server: `Neo4jFixture` starts `neo4j:5-community` with `Testcontainers.Neo4j` (no fixed host ports; Docker required) once for the `SharedNeo4j` collection, so those test classes run one after another. `SeededDatabase.SeedAsync` empties the database, creates a marker node outside any query, and writes five samples of `PureQL.CSharp.Model.Samples`, each under a fresh id, through `QueryGraphs.Of` and `InsertedGraph`: a test-only copy of the Insertion package's `UNWIND` statement (no operation package may be referenced). Assertions count nodes and relationships per `queryId` and in total, so a deletion is checked to remove exactly its graphs.
 
 **Target framework:** net11.0 only, as the model. `IsAotCompatible` is `true`.
 
