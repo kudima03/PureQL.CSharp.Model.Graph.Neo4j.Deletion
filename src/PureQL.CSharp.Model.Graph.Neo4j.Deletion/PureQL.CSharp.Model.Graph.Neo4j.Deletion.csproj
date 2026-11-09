@@ -11,6 +11,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>PureQL.CSharp.Model.Graph.Neo4j.Deletion</PackageId>
+    <Description>Deletes PureQL query graphs from Neo4j by query id or by a set of ids.</Description>
     <RootNamespace>PureQL.CSharp.Model.Graph.Neo4j.Deletion</RootNamespace>
     <AssemblyName>PureQL.CSharp.Model.Graph.Neo4j.Deletion</AssemblyName>
     <Authors>Dmitry Kurochkin</Authors>
