@@ -1,0 +1,9 @@
+<Solution>
+    <Folder Name="/Solution Items/">
+        <File Path=".editorconfig" />
+    </Folder>
+    <Folder Name="/Tests/">
+        <Project Path="Tests/PureQL.CSharp.Model.Graph.Neo4j.Deletion.Tests/PureQL.CSharp.Model.Graph.Neo4j.Deletion.Tests.csproj" />
+    </Folder>
+    <Project Path="PureQL.CSharp.Model.Graph.Neo4j.Deletion/PureQL.CSharp.Model.Graph.Neo4j.Deletion.csproj" />
+</Solution>
