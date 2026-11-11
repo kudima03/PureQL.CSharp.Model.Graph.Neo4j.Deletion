@@ -35,7 +35,7 @@ The Cypher text is a constant built from `GraphLabels` and `GraphProperties`; id
 
 **Target framework:** net11.0 only, as the model. `IsAotCompatible` is `true`.
 
-**Package validation:** `EnablePackageValidation` is `true` against `PackageValidationBaselineVersion` `0.1.0-preview.0.1.0`, the first release; the `nuget-publish` skill moves it after each release, and intentional breaks go to `CompatibilitySuppressions.xml` next to the csproj.
+**Package validation:** `EnablePackageValidation` is `true` against `PackageValidationBaselineVersion` `0.1.0-preview.0.2.0`, the first release; the `nuget-publish` skill moves it after each release, and intentional breaks go to `CompatibilitySuppressions.xml` next to the csproj.
 
 **Mutation testing:** the Stryker step of CI is commented out.
 
