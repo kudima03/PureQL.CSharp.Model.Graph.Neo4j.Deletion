@@ -9,7 +9,7 @@ Deletes **PureQL** query graphs stored in Neo4j.
 
 ## Overview
 
-`PureQL.CSharp.Model.Graph.Neo4j.Deletion` is the deletion package of the `PureQL.CSharp.Model.Graph` family. A query stored by [`PureQL.CSharp.Model.Graph`](https://github.com/kudima03/PureQL.CSharp.Model.Graph) is a graph of `Node`s that all carry the query's id as `queryId`; deleting the query detaches and deletes every one of them.
+`PureQL.CSharp.Model.Graph.Neo4j.Deletion` is the deletion package of the `PureQL.CSharp.Model.Graph` family. A query stored by [`PureQL.CSharp.Model.Graph`](https://github.com/kudima03/PureQL.CSharp.Model.Graph) is a graph of `Node`s that all carry the query's id as `queryId` (the `List` nodes that hold the rows of inline rows too); deleting the query detaches and deletes every one of them.
 
 ## Public API
 
@@ -68,9 +68,11 @@ await session.ExecuteWriteAsync(
 
 ## Dependencies
 
-- [`PureQL.CSharp.Model.Graph`](https://github.com/kudima03/PureQL.CSharp.Model.Graph) `0.1.0-preview.1.0.0` — `GraphLabels`, `GraphProperties`
-- [`PureQL.CSharp.Model.Graph.Neo4j.Abstractions`](https://github.com/kudima03/PureQL.CSharp.Model.Graph.Neo4j.Abstractions) `0.1.0-preview.1.0.0` — `INeo4jStoredQueries`
+- [`PureQL.CSharp.Model.Graph`](https://github.com/kudima03/PureQL.CSharp.Model.Graph) `0.1.0-preview.2.0.0` — `GraphLabels`, `GraphProperties`
+- [`PureQL.CSharp.Model.Graph.Neo4j.Abstractions`](https://github.com/kudima03/PureQL.CSharp.Model.Graph.Neo4j.Abstractions) `0.1.0-preview.2.0.0` — `INeo4jStoredQueries`
 - [`Neo4j.Driver`](https://www.nuget.org/packages/Neo4j.Driver) `6.5.1`
+
+Both PureQL packages are on [`PureQL.CSharp.Model`](https://github.com/kudima03/PureQL.CSharp.Model) `0.1.0-preview.15.0.0` (PureQL specification `0.1.0-preview.3.0.0`).
 
 ## Target Frameworks
 

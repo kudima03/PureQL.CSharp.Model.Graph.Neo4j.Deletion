@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Follows `PureQL.CSharp.Model` `0.1.0-preview.15.0.0` (PureQL specification
+`0.1.0-preview.3.0.0`). The public API and the statements are unchanged.
+
+### Changed
+
+- **Breaking:** depends on `PureQL.CSharp.Model.Graph` `0.1.0-preview.2.0.0` and
+  `PureQL.CSharp.Model.Graph.Neo4j.Abstractions` `0.1.0-preview.2.0.0`, both on
+  `PureQL.CSharp.Model` `0.1.0-preview.15.0.0`. Deleting by `queryId` also removes the
+  `List` nodes that hold the rows of inline rows (`SubqueryRows.Rows`), which carry
+  `Node` and `queryId` like every other node of a graph.
+- Tested by writing and deleting every query of `PureQL.CSharp.Model.Samples`
+  `0.1.0-preview.4.0.0` (151, combined, window, inline-rows and recursive queries
+  included).
+
 ## [0.1.0-preview.0.2.0] - 2026-11-11
 
 ### Changed
