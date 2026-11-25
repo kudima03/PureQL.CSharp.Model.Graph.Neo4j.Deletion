@@ -23,7 +23,7 @@ public sealed record EverySampleTests
     [Fact]
     public void EverySampleIsLoaded()
     {
-        Assert.Equal(151, QuerySamples.All.Count);
+        Assert.Equal(386, QuerySamples.All.Count);
     }
 
     [Theory]
